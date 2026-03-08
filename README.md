@@ -40,7 +40,7 @@ python -m spacy download en_core_web_sm
 ```
 
 
-#### Run Command
+## Run Command
 **Standard Task 1 (Event_special Dataset)**
 ```
 python main.py -d event_special -t task1 -e 100 -o 0.3 -a 0.0
