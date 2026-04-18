@@ -2,9 +2,9 @@ import torch
 import torch.nn as nn
 
 
-class WithinDrugMMIMFM(nn.Module):
+class IntraDrugMMIMFM(nn.Module):
     def __init__(self, input_dim: int = 1024, num_heads: int = 4, num_layers: int = 2, drop_rate: float = 0.1):
-        super(WithinDrugMMIMFM, self).__init__()
+        super(IntraDrugMMIMFM, self).__init__()
         self.input_dim = input_dim
         self.encoder_layer = nn.TransformerEncoderLayer(
             d_model=input_dim, nhead=num_heads, dim_feedforward=input_dim * 4,
@@ -26,9 +26,9 @@ class WithinDrugMMIMFM(nn.Module):
         return x1_attn_encoded, x2_attn_encoded, self_maps
 
 
-class BetweenDrugMMIMFM(nn.Module):
+class InterDrugMMIMFM(nn.Module):
     def __init__(self, input_dim: int = 1024, num_heads: int = 4, drop_rate: float = 0.1):
-        super(BetweenDrugMMIMFM, self).__init__()
+        super(InterDrugMMIMFM, self).__init__()
         self.input_dim = input_dim
         self.cross_attention = CrossAttention(input_dim, num_heads=num_heads, dropout=drop_rate)
 
@@ -77,8 +77,8 @@ class MMIMFM(nn.Module):
     def __init__(self, model_dim: int = 64, num_heads: int = 4, num_layers: int = 1, drop_rate: float = 0.1):
         super(MMIMFM, self).__init__()
         self.model_dim = model_dim
-        self.intra_module = WithinDrugMMIMFM(input_dim=model_dim, num_heads=num_heads, num_layers=num_layers, drop_rate=drop_rate)
-        self.inter_module = BetweenDrugMMIMFM(input_dim=model_dim, num_heads=num_heads, drop_rate=drop_rate)
+        self.intra_module = IntraDrugMMIMFM(input_dim=model_dim, num_heads=num_heads, num_layers=num_layers, drop_rate=drop_rate)
+        self.inter_module = InterDrugMMIMFM(input_dim=model_dim, num_heads=num_heads, drop_rate=drop_rate)
 
     def _unpack_modalities(self, modalities):
         """Return x1, x2 of shape (batch, num_modalities, model_dim).
