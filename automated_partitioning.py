@@ -55,19 +55,16 @@ def define_pair_frequency_split(df_ddi, random_seed):
 
     final_folds = []
     for i in range(5):
-        # 合并高频、中频、低频的第i部分
         fold = pd.concat([high_folds[i], mid_folds[i], low_folds[i]])
         final_folds.append(fold)
 
     for fold_idx, fold in enumerate(final_folds):
         print(f"Fold {fold_idx + 1}:")
 
-        # 验证频率分布
         freq_dist = fold['pair_frequency'].value_counts(normalize=True)
         print("Frequency Distribution:")
         print(freq_dist)
 
-        # 验证标签覆盖
         labels_present = fold['label'].unique()
         print(f"Unique Labels: {len(labels_present)}/65")
 
@@ -156,16 +153,16 @@ def summary_drug_label_information(db_name):
     })
     df_drug_counts = df_drug_counts.sort_values(by='count', ascending=False)
 
-    q_high = df_drug_counts["count"].quantile(0.6)  # 前40%高频：0% ~ 40% -> 对应分位数 60%
-    q_mid = df_drug_counts["count"].quantile(0.2)   # 中间40%中频：40% ~ 80% -> 对应分位数 20%
-    q_low = 0                                      # 后20%低频：80% ~ 100%
+    q_high = df_drug_counts["count"].quantile(0.6)  
+    q_mid = df_drug_counts["count"].quantile(0.2)  
+    q_low = 0                                     
 
     df_drug_counts["frequency"] = pd.cut(
         df_drug_counts["count"],
-        bins=[q_low, q_mid, q_high, np.inf],  # 分箱边界
-        labels=["low", "mid", "high"],        # 标签顺序对应 bins 区间
-        include_lowest=True,                  # 包含最小值
-        right=False                           # 左闭右开区间
+        bins=[q_low, q_mid, q_high, np.inf], 
+        labels=["low", "mid", "high"],        
+        include_lowest=True,                  
+        right=False                         
     )
 
     event_number = df_event['interaction'].value_counts()
