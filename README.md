@@ -70,6 +70,6 @@ year = {2026},
 issn = {2667-3185},
 doi = {https://doi.org/10.1016/j.ailsci.2026.100176},
 url = {https://www.sciencedirect.com/science/article/pii/S2667318526000243},
-author = {Jiayue Qiu and Yifan Deng and Song Lai and Xiaorui Wang and Sitong Guo and Lingling Wang and Qin Li and Xiaomeng Liu and Huanxiang Liu},
+author = {Jiayue Qiu and Yifan Deng and Song Lai and Xiaorui Wang and Sitong Guo and Lingling Wang and Qin Li and Xiaomeng Liu and Huanxiang Liu}
 }
 ```
