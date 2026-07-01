@@ -56,3 +56,20 @@ python main.py -d event_special -t task2_3 -e 100 -o 0.3 -a 0.2
 ```
 python main.py -d event_special -t task2_3 -e 100 -o 0.2 -a 0.2
 ```
+
+## Notice
+> [!NOTE]
+> If you use this code, please cite our paper:
+```
+@article{QIU2026MMI,
+title = {MMI-DDI: multimodal mutual influence framework for drug-drug interaction prediction under drug cold start},
+journal = {Artificial Intelligence in the Life Sciences},
+volume = {9},
+pages = {100176},
+year = {2026},
+issn = {2667-3185},
+doi = {https://doi.org/10.1016/j.ailsci.2026.100176},
+url = {https://www.sciencedirect.com/science/article/pii/S2667318526000243},
+author = {Jiayue Qiu and Yifan Deng and Song Lai and Xiaorui Wang and Sitong Guo and Lingling Wang and Qin Li and Xiaomeng Liu and Huanxiang Liu},
+}
+```
